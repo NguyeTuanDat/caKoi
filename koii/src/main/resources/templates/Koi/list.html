@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Cá Koi</title>
+</head>
+<body>
+<h1>Danh Sách Cá Koi</h1>
+<a href="/kois/create">Tạo Mới Cá Koi</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Giới Tính</th>
+        <th>Giống</th>
+        <th>Tuổi</th>
+        <th>Kích Thước</th>
+        <th>Trọng Lượng</th>
+        <th>Giá</th>
+        <th>Hành Động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Lặp qua danh sách các Koi cá -->
+    <th:block th:each="koi : ${kois}">
+        <tr>
+            <td th:text="${koi.id}"></td>
+            <td th:text="${koi.name}"></td>
+            <td th:text="${koi.gender}"></td>
+            <td th:text="${koi.breed}"></td>
+            <td th:text="${koi.age}"></td>
+            <td th:text="${koi.size}"></td>
+            <td th:text="${koi.weight}"></td>
+            <td th:text="${koi.price}"></td>
+            <td>
+                <a th:href="@{/kois/{koiId}/support/food-Result(koiId=${koi.id})}" style="margin-left:8px;">Tính Thức Ăn</a>
+                <form th:action="@{/kois/{koiId}/delete(id=${koi.id})}" method="post" style="display:inline;">
+                    <button type="submit">Xóa</button>
+                </form>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+</body>
+</html>

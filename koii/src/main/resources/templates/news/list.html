@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách bài viết</title>
+</head>
+<body>
+<h1>Danh sách Tin tức / Blog</h1>
+
+<a th:href="@{/news/create}">Tạo Bài Viết Mới</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Tiêu đề</th>
+        <th>Tác giả</th>
+        <th>Ngày tạo</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="post : ${posts}">
+        <td th:text="${post.title}"></td>
+        <td th:text="${post.author}"></td>
+        <td th:text="${#temporals.format(post.createdAt, 'dd/MM/yyyy HH:mm')}"></td>
+        <td>
+            <a th:href="@{/news/{id}(id=${post.id})}">Xem chi tiết</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+<a th:href="@{/dashboard}">← Quay về Dashboard</a>
+</body>
+</html>

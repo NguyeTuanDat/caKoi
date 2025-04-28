@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm bài viết mới</title>
+</head>
+<body>
+<h1>Thêm mới bài viết</h1>
+
+<form th:action="@{/news}" th:object="${post}" method="post">
+    <label>Tiêu đề:</label><br>
+    <input type="text" th:field="*{title}" required><br><br>
+
+    <label>Nội dung:</label><br>
+    <textarea th:field="*{content}" rows="10" cols="50" required></textarea><br><br>
+
+    <label>Tác giả:</label><br>
+    <input type="text" th:field="*{author}" required><br><br>
+
+    <button type="submit">Lưu bài viết</button>
+</form>
+
+<br/>
+<a th:href="@{/news}">← Quay lại danh sách</a>
+</body>
+</html>

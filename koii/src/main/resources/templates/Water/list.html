@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Thông Số Nước - Hồ [[${pond.name}]]</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<h1>Danh Sách Thông Số Nước Hồ "<span th:text="${pond.name}"></span>"</h1>
+
+<!-- Hiển thị thông báo lỗi nếu có -->
+<div th:if="${errorMessage}" class="error">
+    <p th:text="${errorMessage}"></p>
+</div>
+
+<!-- Bảng danh sách thông số nước -->
+<table>
+    <thead>
+    <tr>
+        <th>Thời gian đo</th>
+        <th>Nhiệt độ (°C)</th>
+        <th>Độ mặn (ppt)</th>
+        <th>pH</th>
+        <th>Oxy (mg/L)</th>
+        <th>NO2 (mg/L)</th>
+        <th>NO3 (mg/L)</th>
+        <th>PO4 (mg/L)</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="param : ${params}">
+        <td th:text="${#temporals.format(param.measuredAt, 'dd/MM/yyyy HH:mm')}"></td>
+        <td th:text="${param.temperature}"></td>
+        <td th:text="${param.salinity}"></td>
+        <td th:text="${param.pH}"></td>
+        <td th:text="${param.oxygen}"></td>
+        <td th:text="${param.no2}"></td>
+        <td th:text="${param.no3}"></td>
+        <td th:text="${param.po4}"></td>
+        <td>
+            <form th:action="@{/ponds/{pondId}/water/{id}/delete(pondId=${pond.id}, id=${param.id})}" method="post" style="display:inline;">
+                <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</button>
+            </form>
+        </td>
+    </tr>
+    <tr th:if="${params == null or params.isEmpty()}">
+        <td colspan="9">Không có thông số nước nào.</td>
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+<a th:href="@{/ponds/{pondId}/water/create(pondId=${pond.id})}">Thêm Thông Số Nước</a>
+<br/>
+<a th:href="@{/ponds}">← Quay lại Danh sách Hồ</a>
+
+</body>
+</html>

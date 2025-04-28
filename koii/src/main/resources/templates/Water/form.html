@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm Thông Số Nước - Hồ [[${pond.name}]]</title>
+    <style>
+        .error {
+            color: red;
+            font-size: 0.9em;
+            display: block;
+        }
+        label {
+            display: inline-block;
+            width: 120px;
+            margin: 5px 0;
+        }
+        input[type="number"], input[type="datetime-local"] {
+            width: 200px;
+            padding: 5px;
+            margin: 5px 0;
+        }
+        button {
+            padding: 8px 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Thêm Thông Số Nước Hồ "<span th:text="${pond.name}"></span>"</h1>
+
+<!-- Hiển thị thông báo lỗi chung nếu có -->
+<div th:if="${errorMessage}" class="error">
+    <p th:text="${errorMessage}"></p>
+</div>
+
+<form th:action="@{/ponds/{pondId}/water(pondId=${pond.id})}" th:object="${param}" method="post">
+    <!-- Ẩn trường ID nếu cần -->
+    <input type="hidden" th:field="*{id}" />
+
+    <!-- Thời gian đo -->
+    <div>
+        <label for="measuredAt">Thời gian đo:</label>
+        <input type="datetime-local" id="measuredAt" th:field="*{measuredAt}" required />
+        <span th:errors="*{measuredAt}" class="error"></span>
+    </div>
+
+    <!-- Nhiệt độ -->
+    <div>
+        <label for="temperature">Nhiệt độ (°C):</label>
+        <input type="number" step="0.01" id="temperature" th:field="*{temperature}" placeholder="Ví dụ: 25.0" min="0" max="100" />
+        <span th:errors="*{temperature}" class="error"></span>
+    </div>
+
+    <!-- Độ mặn -->
+    <div>
+        <label for="salinity">Độ mặn (ppt):</label>
+        <input type="number" step="0.01" id="salinity" th:field="*{salinity}" placeholder="Ví dụ: 35.0" min="0" max="100" />
+        <span th:errors="*{salinity}" class="error"></span>
+    </div>
+
+    <!-- pH -->
+    <div>
+        <label for="pH">pH:</label>
+        <input type="number" step="0.01" id="pH" th:field="*{pH}" placeholder="Ví dụ: 7.5" min="0" max="14" />
+        <span th:errors="*{pH}" class="error"></span>
+    </div>
+
+    <!-- Oxy -->
+    <div>
+        <label for="oxygen">Oxy (mg/L):</label>
+        <input type="number" step="0.01" id="oxygen" th:field="*{oxygen}" placeholder="Ví dụ: 8.0" min="0" max="20" />
+        <span th:errors="*{oxygen}" class="error"></span>
+    </div>
+
+    <!-- NO2 -->
+    <div>
+        <label for="no2">NO2 (mg/L):</label>
+        <input type="number" step="0.01" id="no2" th:field="*{no2}" placeholder="Ví dụ: 0.1" min="0" />
+        <span th:errors="*{no2}" class="error"></span>
+    </div>
+
+    <!-- NO3 -->
+    <div>
+        <label for="no3">NO3 (mg/L):</label>
+        <input type="number" step="0.01" id="no3" th:field="*{no3}" placeholder="Ví dụ: 1.0" min="0" />
+        <span th:errors="*{no3}" class="error"></span>
+    </div>
+
+    <!-- PO4 -->
+    <div>
+        <label for="po4">PO4 (mg/L):</label>
+        <input type="number" step="0.01" id="po4" th:field="*{po4}" placeholder="Ví dụ: 0.05" min="0" />
+        <span th:errors="*{po4}" class="error"></span>
+    </div>
+
+    <!-- Nút lưu -->
+    <button type="submit">Lưu Thông Số</button>
+</form>
+
+<br/>
+<a th:href="@{/ponds/{pondId}/water/list(pondId=${pond.id})}">← Quay lại Danh sách Thông Số</a>
+
+</body>
+</html>

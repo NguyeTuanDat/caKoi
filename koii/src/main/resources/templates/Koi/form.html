@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Cá Koi</title>
+</head>
+<body>
+<h1 th:text="${koi.id == null ? 'Tạo Mới Cá Koi' : 'Chỉnh Sửa Cá Koi'}"></h1>
+
+<form th:action="@{/kois}" th:object="${koi}" method="post">
+    <div>
+        <label for="name">Tên:</label>
+        <input type="text" id="name" th:field="*{name}" placeholder="Tên cá Koi">
+    </div>
+    <div>
+        <label for="gender">Giới tính:</label>
+        <input type="text" id="gender" th:field="*{gender}" placeholder="Giới tính">
+    </div>
+    <div>
+        <label for="breed">Giống:</label>
+        <input type="text" id="breed" th:field="*{breed}" placeholder="Giống cá Koi">
+    </div>
+    <div>
+        <label for="age">Tuổi:</label>
+        <input type="number" id="age" th:field="*{age}" placeholder="Tuổi">
+    </div>
+    <div>
+        <label for="size">Kích thước:</label>
+        <input type="number" id="size" th:field="*{size}" placeholder="Kích thước cá">
+    </div>
+    <div>
+        <label for="weight">Trọng lượng:</label>
+        <input type="number" id="weight" th:field="*{weight}" placeholder="Trọng lượng cá">
+    </div>
+    <div>
+        <label for="price">Giá:</label>
+        <input type="number" id="price" th:field="*{price}" placeholder="Giá cá">
+    </div>
+    <div>
+        <button type="submit">Lưu</button>
+    </div>
+</form>
+
+<a href="/kois/List">Quay lại danh sách</a>
+</body>
+</html>

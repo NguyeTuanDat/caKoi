@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Quản lý cá Koi</title>
+</head>
+<body>
+<h1>Dashboard Tổng Quan</h1>
+
+<ul>
+    <li>Tổng số cá Koi: <strong th:text="${totalKois}"></strong></li>
+    <li>Tổng số hồ cá: <strong th:text="${totalPonds}"></strong></li>
+    <li>Tổng lượng thức ăn cần thiết mỗi ngày: <strong th:text="${totalFood}"></strong> gram</li>
+</ul>
+
+<br/>
+<a th:href="@{/kois/List}">Quản lý Cá Koi</a> |
+<a th:href="@{/ponds/List}">Quản lý Hồ Cá</a> |
+<a th:href="@{/news}">Tin tức / Blog</a>
+
+</body>
+</html>

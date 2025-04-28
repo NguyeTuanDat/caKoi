@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Kết quả tính lượng muối</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h2>Kết quả tính lượng muối cho Hồ Cá</h2>
+
+<p>Hồ: <span th:text="${pond.name}">Tên hồ</span></p>
+<p>Thể tích hồ: <span th:text="${pond.volume}">Thể tích hồ</span> m³</p>
+<p>Phần trăm muối: <span th:text="${percent}">0.3</span>%</p>
+<p>Lượng muối cần thiết: <span th:text="${saltAmount}">Lượng muối</span> kg</p>
+
+<a th:href="@{/ponds/List}">Quay lại danh sách hồ cá</a>
+</body>
+</html>

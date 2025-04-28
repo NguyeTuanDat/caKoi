@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Kết Quả Tính Thức Ăn Cá Koi</title>
+</head>
+<body>
+<h1>Kết Quả Tính Thức Ăn Cho Cá Koi</h1>
+
+<h3>Thông tin cá Koi</h3>
+<ul>
+    <li><strong>Tên:</strong> <span th:text="${koi.name}"></span></li>
+    <li><strong>Tuổi:</strong> <span th:text="${koi.ageInMonths}"></span> tháng</li>
+    <li><strong>Trọng lượng:</strong> <span th:text="${koi.weight}"></span> kg</li>
+</ul>
+
+<h3>Kết quả tính toán</h3>
+<p>Lượng thức ăn cần thiết mỗi ngày: <strong><span th:text="${foodRequired}"></span> gram</strong></p>
+
+<br/>
+<a href="/kois/List">← Quay lại danh sách cá Koi</a>
+</body>
+</html>

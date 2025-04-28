@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Sản Phẩm</title>
+</head>
+<body>
+<h1 th:text="${#strings.isEmpty(product.id) ? 'Thêm mới sản phẩm' : 'Chỉnh sửa sản phẩm'}"></h1>
+
+<form th:action="@{/products}" th:object="${product}" method="post">
+    <input type="hidden" th:field="*{id}" />
+
+    <label>Tên sản phẩm:</label>
+    <input type="text" th:field="*{name}" required/>
+    <br/><br/>
+
+    <label>Giá:</label>
+    <input type="number" th:field="*{price}" required/>
+    <br/><br/>
+
+    <label>Mô tả:</label>
+    <input type="text" th:field="*{description}" />
+    <br/><br/>
+
+    <label>Link ảnh sản phẩm:</label>
+    <input type="text" th:field="*{imageUrl}" />
+    <br/><br/>
+
+    <button type="submit">Lưu</button>
+</form>
+
+<br/>
+<a href="/products/List">← Quay lại danh sách sản phẩm</a>
+
+</body>
+</html>

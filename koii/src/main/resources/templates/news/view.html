@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Xem bài viết</title>
+</head>
+<body>
+<h1 th:text="${post.title}">Tiêu đề bài viết</h1>
+
+<p><strong>Tác giả:</strong> <span th:text="${post.author}"></span></p>
+<p><strong>Ngày đăng:</strong> <span th:text="${#temporals.format(post.createdAt, 'dd/MM/yyyy HH:mm')}"></span></p>
+
+<hr>
+
+<div th:text="${post.content}"></div>
+
+<br/>
+<a th:href="@{/news}">← Quay lại danh sách bài viết</a>
+</body>
+</html>

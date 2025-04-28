@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Sản Phẩm</title>
+</head>
+<body>
+<h1>Danh Sách Sản Phẩm</h1>
+
+<a href="/products/create">+ Thêm sản phẩm mới</a>
+<br/><br/>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Giá</th>
+        <th>Mô tả</th>
+        <th>Ảnh</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price} + ' VND'"></td>
+        <td th:text="${product.description}"></td>
+        <td><img th:src="${product.imageUrl}" alt="Ảnh sản phẩm" width="100"/></td>
+        <td>
+            <a th:href="@{/products/{id}/edit(id=${product.id})}">Chỉnh sửa</a>
+            |
+            <form th:action="@{/products/{id}/delete(id=${product.id})}" method="post" style="display:inline;">
+                <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

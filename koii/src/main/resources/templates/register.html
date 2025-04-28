@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Đăng ký</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div class="container">
+    <h2>Đăng ký tài khoản</h2>
+    <form th:action="@{/register}" th:object="${user}" method="post">
+        <div>
+            <label for="username">Tên đăng nhập:</label>
+            <input type="text" id="username" th:field="*{username}" required/>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" th:field="*{email}" required/>
+        </div>
+        <div>
+            <label for="password">Mật khẩu:</label>
+            <input type="password" id="password" th:field="*{password}" required/>
+        </div>
+        <div>
+            <label for="confirmPassword">Xác nhận mật khẩu:</label>
+            <input type="password" id="confirmPassword" th:field="*{confirmPassword}" required/>
+        </div>
+        <!-- Hiển thị lỗi nếu có -->
+        <div th:if="${#fields.hasErrors('password')}">
+            <p style="color: red;" th:text="${#fields.errors('password')}"></p>
+        </div>
+        <div th:if="${#fields.hasErrors('confirmPassword')}">
+            <p style="color: red;" th:text="${#fields.errors('confirmPassword')}"></p>
+        </div>
+        <div th:if="${error}">
+            <p style="color: red;" th:text="${error}"></p>
+        </div>
+        <button type="submit">Đăng ký</button>
+    </form>
+    <p>Đã có tài khoản? <a th:href="@{/login}">Đăng nhập</a></p>
+</div>
+</body>
+</html>
